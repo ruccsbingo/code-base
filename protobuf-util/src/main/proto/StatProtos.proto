@@ -1,0 +1,31 @@
+
+import "google/protobuf/descriptor.proto";
+
+package yidian.data.meta.types;
+
+extend google.protobuf.FieldOptions {
+    optional string agg_type = 50002;
+    optional int64 default_value = 50003;
+}
+
+message StatValue {
+    optional int64 cnt_vclick = 1[(agg_type) = "ADD", (default_value) = 0];
+    optional int64 cnt_click = 2;
+    optional int64 cnt_view = 3;
+    optional int64 cnt_rview = 4;
+    optional int64 cnt_like= 5;
+    optional int64 cnt_dislike = 6;
+    optional int64 cnt_share = 7;
+    optional int64 cnt_addcomment = 8;
+    optional int64 cnt_thumbup = 9;
+    optional int64 cnt_thumbdown = 10;
+    optional int64 cnt_dwell = 11;
+    optional int64 cnt_shortdwell = 12;
+    optional int64 dwell = 13;
+    optional int64 cmu_like = 14[(agg_type) = "LAST"];
+    optional int64 cmu_addcomment = 15[(agg_type) = "LAST"];
+    optional int64 cmu_thumbup = 16[(agg_type) = "LAST"];
+    optional int64 cmu_thumbdown = 17[(agg_type) = "LAST"];
+
+    optional int64 timestamp = 20;
+}

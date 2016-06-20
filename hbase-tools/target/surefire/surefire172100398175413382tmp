@@ -1,0 +1,6 @@
+#surefire
+#Tue May 31 11:43:50 CST 2016
+user.dir=/Users/zhangbing/IdeaProjects/Development/common_util/hbase-tools
+idea.version=14.1.4
+localRepository=/Users/zhangbing/.m2/repository
+basedir=/Users/zhangbing/IdeaProjects/Development/common_util/hbase-tools
