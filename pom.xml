@@ -11,16 +11,16 @@
     <modules>
         <module>base-servlet</module>
         <module>common</module>
+        <module>config-util</module>
         <module>hive-util</module>
         <module>hdfs-util</module>
-        <module>protobuf-util</module>
-        <module>kafka-util</module>
-        <module>mail-util</module>
-        <module>wxpay</module>
-        <module>config-util</module>
-        <module>log-util</module>
         <module>http-client</module>
         <module>https-server</module>
+        <module>kafka-util</module>
+        <module>mail-util</module>
+        <module>log-util</module>
+        <!--<module>protobuf-util</module>-->
+        <module>wxpay</module>
     </modules>
 
     <properties>
@@ -157,29 +157,6 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>com.google.protobuf.tools</groupId>
-                <artifactId>maven-protoc-plugin</artifactId>
-                <version>0.1.10</version>
-                <executions>
-                    <execution>
-                        <id>generate-sources</id>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <protoSourceRoot>${basedir}/src/main/proto/</protoSourceRoot>
-                            <includes>
-                                <param>*.proto</param>
-                            </includes>
-                        </configuration>
-                    </execution>
-                </executions>
-                <configuration>
-                    <protocExecutable>protoc</protocExecutable>
-                </configuration>
-            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

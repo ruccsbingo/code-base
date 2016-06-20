@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bingo.dao.ApproversDao">
+
+	<resultMap id="Approvers" type="com.bingo.po.ApproversPo">
+		<id property="id" column="id"/>
+		<result property="account" column="account"/>
+		<result property="uid" column="uid"/>
+		<result property="onWorkTime" column="on_work_time"/>
+		<result property="fields" column="fields"/>
+		<result property="offWorkTime" column="off_work_time"/>
+		<result property="approverName" column="approver_name"/>
+		<result property="updatedTime" column="updated_time"/>
+		<result property="video" column="video"/>
+		<result property="createdTime" column="created_time"/>
+		<result property="article" column="article"/>
+		<result property="quality" column="quality"/>
+		<result property="invite" column="invite"/>
+	</resultMap>
+
+	<sql id="tableName">approvers</sql>
+
+	<!-- basic function, defined in the super dao class -->
+	<select id="countAll" resultType="int">
+		SELECT count(*) FROM <include refid="tableName"/>;
+	</select>
+
+	<select id="getByPK" parameterType="long" resultMap="Approvers">
+		SELECT * FROM <include refid="tableName"/> where `id` = #{id};
+	</select>
+
+	<select id="getAll" resultMap="Approvers">
+		SELECT * FROM <include refid="tableName"/>;
+	</select>
+
+	<insert id="insert" parameterType="ApproversPO" useGeneratedKeys="true" keyProperty="id">
+		REPLACE INTO <include refid="tableName"/>
+		(`account`, `uid`, `on_work_time`, `fields`, `off_work_time`, `approver_name`, `updated_time`, `video`, `created_time`, `article`, `quality`, `invite`)
+		VALUES(#{account}, #{uid}, #{onWorkTime}, #{fields}, #{offWorkTime}, #{approverName}, #{updatedTime}, #{video}, #{createdTime}, #{article}, #{quality}, #{invite});
+	</insert>
+
+	<update id="updateFields" parameterType="java.util.Map">
+		UPDATE <include refid="tableName"/>
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="map.account != null"> `account` = #{map.account},</if>
+			<if test="map.uid != null"> `uid` = #{map.uid},</if>
+			<if test="map.onWorkTime != null"> `on_work_time` = #{map.onWorkTime},</if>
+			<if test="map.fields != null"> `fields` = #{map.fields},</if>
+			<if test="map.offWorkTime != null"> `off_work_time` = #{map.offWorkTime},</if>
+			<if test="map.approverName != null"> `approver_name` = #{map.approverName},</if>
+			<if test="map.updatedTime != null"> `updated_time` = #{map.updatedTime},</if>
+			<if test="map.video != null"> `video` = #{map.video},</if>
+			<if test="map.createdTime != null"> `created_time` = #{map.createdTime},</if>
+			<if test="map.article != null"> `article` = #{map.article},</if>
+			<if test="map.quality != null"> `quality` = #{map.quality},</if>
+			<if test="map.invite != null"> `invite` = #{map.invite},</if>
+		</trim>
+		WHERE `id` = #{id};
+	</update>
+
+	<update id="updateAll" parameterType="ApproversPO">
+		UPDATE <include refid="tableName"/>
+		SET
+		`account`= #{account},
+		`uid`= #{uid},
+		`on_work_time`= #{onWorkTime},
+		`fields`= #{fields},
+		`off_work_time`= #{offWorkTime},
+		`approver_name`= #{approverName},
+		`updated_time`= #{updatedTime},
+		`video`= #{video},
+		`created_time`= #{createdTime},
+		`article`= #{article},
+		`quality`= #{quality},
+		`invite`= #{invite}
+		WHERE `id`= #{id};
+	</update>
+
+	<delete id ="realDelete" parameterType="long">
+		DELETE FROM <include refid="tableName"/>
+		WHERE `id` = #{id}
+	</delete>
+</mapper>
