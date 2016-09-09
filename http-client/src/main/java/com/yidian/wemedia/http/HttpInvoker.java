@@ -32,7 +32,7 @@ public abstract class HttpInvoker {
 
     private final static ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-    protected String baseUrl;
+//    protected String baseUrl;
 
     protected static PoolingClientConnectionManager connectionManager = new PoolingClientConnectionManager();
     static {
@@ -45,8 +45,8 @@ public abstract class HttpInvoker {
         client.getParams().setIntParameter(CoreConnectionPNames.SO_TIMEOUT, 1 * 1000);
     }
 
-    public HttpInvoker(String baseUrl) {
-        this.baseUrl = baseUrl;
+    public HttpInvoker() {
+//        this.baseUrl = baseUrl;
     }
 
     private void abortRequest(HttpRequestBase request) {
@@ -78,7 +78,7 @@ public abstract class HttpInvoker {
 
     protected <T> T httpPost(String url, String data, TypeReference<T> typeRef) {
         long startTime = System.currentTimeMillis();
-        Header header = new BasicHeader(HTTP.CONTENT_TYPE, "application/com.bingo.json");
+        Header header = new BasicHeader(HTTP.CONTENT_TYPE, "application/json");
         HttpPost post = new HttpPost(url);
         post.setHeader(header);
         T ret = null;
@@ -263,12 +263,12 @@ public abstract class HttpInvoker {
         }
     }
 
-    public String getBaseUrl() {
-        return baseUrl;
-    }
-
-    public void setBaseUrl(String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
+//    public String getBaseUrl() {
+//        return baseUrl;
+//    }
+//
+//    public void setBaseUrl(String baseUrl) {
+//        this.baseUrl = baseUrl;
+//    }
 }
 

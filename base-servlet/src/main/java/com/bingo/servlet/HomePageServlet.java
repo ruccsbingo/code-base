@@ -3,6 +3,7 @@ package com.bingo.servlet;
 import com.bingo.util.HttpUtil;
 import com.bingo.util.ParamGetter;
 import org.apache.ibatis.session.SqlSession;
+import org.eclipse.jetty.util.IO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

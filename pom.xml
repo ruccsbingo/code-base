@@ -21,6 +21,7 @@
         <module>log-util</module>
         <!--<module>protobuf-util</module>-->
         <module>wxpay</module>
+        <module>jiguang</module>
     </modules>
 
     <properties>
