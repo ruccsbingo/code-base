@@ -22,6 +22,7 @@
         <!--<module>protobuf-util</module>-->
         <module>wxpay</module>
         <module>jiguang</module>
+        <module>excel-util</module>
     </modules>
 
     <properties>
