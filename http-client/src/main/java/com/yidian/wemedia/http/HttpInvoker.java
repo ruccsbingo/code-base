@@ -117,8 +117,8 @@ public abstract class HttpInvoker {
         } catch (Exception e) {
             log.error("Http(s) call : " + url + " falied.");
             log.error("CAUSE " + e.getMessage(), e);
-        } finally {
             abortRequest(post);
+        } finally {
         }
         log.info("Http(s) call : POST " + url + " DATA :" + data + " time: " + (System.currentTimeMillis() - startTime));
         return ret;
@@ -138,8 +138,8 @@ public abstract class HttpInvoker {
         } catch (Exception e) {
             log.error("Http(s) call : " + url + " falied.");
             log.error("CAUSE " + e.getMessage(), e);
-        } finally {
             abortRequest(delete);
+        } finally {
         }
         log.info("Http(s) call : DELETE " + url + " time: " + (System.currentTimeMillis() - startTime));
         return ret;
@@ -157,8 +157,8 @@ public abstract class HttpInvoker {
         } catch (Exception e) {
             log.error("Http(s) call : " + url + " falied.");
             log.error("CAUSE " + e.getMessage(), e);
-        } finally {
             abortRequest(get);
+        } finally {
         }
         log.info("Http(s) call : GET " + url + " time: " + (System.currentTimeMillis() - startTime));
         return ret;
@@ -177,8 +177,8 @@ public abstract class HttpInvoker {
         } catch (Exception e) {
             log.error("Http(s) call : " + url + " falied.");
             log.error("CAUSE " + e.getMessage(), e);
-        } finally {
             abortRequest(get);
+        } finally {
         }
         log.info("Http(s) call :" + url + " time: " + (System.currentTimeMillis() - startTime));
         return ret;
@@ -200,8 +200,8 @@ public abstract class HttpInvoker {
         } catch (Exception e) {
             log.error("Http(s) call : " + url + " falied.");
             log.error("CAUSE " + e.getMessage(), e);
-        } finally {
             abortRequest(post);
+        } finally {
         }
         log.info("Http(s) call :" + url + " time: " + (System.currentTimeMillis() - startTime));
         return ret;
@@ -220,9 +220,9 @@ public abstract class HttpInvoker {
         } catch (IOException e) {
             log.error("Http(s) call : " + url + " falied.");
             log.error("CAUSE " + e.getMessage(), e);
+            abortRequest(post);
             throw e;
         } finally {
-            abortRequest(post);
         }
         log.info("Http(s) call :" + url + " time:" + (System.currentTimeMillis() - startTime));
         return ret;
@@ -239,9 +239,9 @@ public abstract class HttpInvoker {
         } catch (IOException e) {
             log.error("Http(s) call : " + url + " falied.");
             log.error("CAUSE " + e.getMessage(), e);
+            abortRequest(get);
             throw e;
         } finally {
-            abortRequest(get);
         }
         log.info("Http(s) call :" + url + " time:" + (System.currentTimeMillis() - startTime));
         return ret;
