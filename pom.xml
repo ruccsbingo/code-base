@@ -19,10 +19,12 @@
         <module>kafka-util</module>
         <module>mail-util</module>
         <module>log-util</module>
-        <!--<module>protobuf-util</module>-->
+        <module>protobuf-util</module>
         <module>wxpay</module>
         <module>jiguang</module>
         <module>excel-util</module>
+        <module>websocket</module>
+        <module>netty-demo</module>
     </modules>
 
     <properties>
