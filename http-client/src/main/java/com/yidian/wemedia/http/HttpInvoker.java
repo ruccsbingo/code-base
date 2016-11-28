@@ -7,13 +7,16 @@ import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.protocol.HTTP;
@@ -34,16 +37,20 @@ public abstract class HttpInvoker {
 
 //    protected String baseUrl;
 
-    protected static PoolingClientConnectionManager connectionManager = new PoolingClientConnectionManager();
+    protected static PoolingHttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager();
+
     static {
         connectionManager.setMaxTotal(100);
         connectionManager.setDefaultMaxPerRoute(10);
     }
-    protected static HttpClient client = new DefaultHttpClient(connectionManager);
-    static {
-        client.getParams().setIntParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 1 * 1000);
-        client.getParams().setIntParameter(CoreConnectionPNames.SO_TIMEOUT, 1 * 1000);
-    }
+
+    protected static HttpClient client =  HttpClients.custom()
+            .setConnectionManager(connectionManager)
+            .setDefaultRequestConfig(
+                    RequestConfig.custom()
+                            .setConnectTimeout(2000)
+                            .setSocketTimeout(2000)
+                            .build()).build();
 
     public HttpInvoker() {
 //        this.baseUrl = baseUrl;

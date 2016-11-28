@@ -25,6 +25,10 @@
         <module>excel-util</module>
         <module>websocket</module>
         <module>netty-demo</module>
+        <module>alipay</module>
+        <module>http-proxy</module>
+        <module>multi-datasource</module>
+        <module>multi-dynamic-datasource</module>
     </modules>
 
     <properties>
@@ -66,10 +70,11 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.2.5</version>
+            <version>4.5.2</version>
         </dependency>
 
         <dependency>
