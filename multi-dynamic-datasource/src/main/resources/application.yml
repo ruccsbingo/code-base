@@ -6,9 +6,9 @@ datasource:
   type: com.alibaba.druid.pool.DruidDataSource
 #主库
   write:
-    url: jdbc:mysql://localhost:3306/master?useUnicode=true&characterEncoding=utf-8
-    username: root
-    password: root
+    url: jdbc:mysql://10.101.1.140:3306/wemedia_for_manual?characterSet=utf8mb4
+    username: worker
+    password: services
     driver-class-name: com.mysql.jdbc.Driver
     filters: stat
     maxActive: 20
@@ -25,9 +25,9 @@ datasource:
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
   read1:
-    url: jdbc:mysql://localhost:3306/slave1?useUnicode=true&characterEncoding=utf-8
-    username: root
-    password: root
+    url: jdbc:mysql://10.101.1.140:3306/wemedia_for_manual_dev?characterSet=utf8mb4
+    username: worker
+    password: services
     driver-class-name: com.mysql.jdbc.Driver
     filters: stat
     maxActive: 20
@@ -44,9 +44,9 @@ datasource:
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
   read2:
-    url: jdbc:mysql://localhost:3306/slave2?useUnicode=true&characterEncoding=utf-8
-    username: root
-    password: root
+    url: jdbc:mysql://10.101.1.140:3306/wemedia_for_manual_dev2?characterSet=utf8mb4
+    username: worker
+    password: services
     driver-class-name: com.mysql.jdbc.Driver
     filters: stat
     maxActive: 20

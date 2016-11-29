@@ -16,15 +16,13 @@ public class DataSourceAop {
 
     private static final Logger log = LoggerFactory.getLogger(DataSourceAop.class);
 
-    @Before("execution(* com.bingo.*.dao..*.find*(..)) " +
-            " or execution(* com.bingo.*.dao..*.get*(..))")
+    @Before("execution(* com.bingo.dao.AccountDao.find*(..)) or execution(* com.bingo.dao.AccountDao.get*(..))")
     public void setReadDataSourceType() {
         DataSourceContextHolder.read();
         log.info("dataSource切换到：Read");
     }
 
-    @Before("execution(* com.bingo.*.dao..*.insert*(..))" +
-            " or execution(* com.bingo.*.dao..*.update*(..))")
+    @Before("execution(* com.bingo.dao.AccountDao.insert*(..)) or execution(* com.bingo.dao.AccountDao.update*(..))")
     public void setWriteDataSourceType() {
         DataSourceContextHolder.write();
         log.info("dataSource切换到：write");

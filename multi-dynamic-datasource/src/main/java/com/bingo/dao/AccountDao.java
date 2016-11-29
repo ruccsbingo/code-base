@@ -2,6 +2,7 @@ package com.bingo.dao;
 
 import com.bingo.mapper.AccountMapper;
 import com.bingo.model.Account;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,9 +12,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class AccountDao {
     @Autowired
-    AccountMapper accountMapper;
+    private SqlSession sqlSession;
 
-    Account getMediaRecordByDocId(String docId) {
-        return accountMapper.getMediaRecordByDocId(docId);
+    public Account getByPK(Long id) {
+        return this.sqlSession.getMapper(AccountMapper.class).getByPK(id);
+    }
+
+    public Long insert(Account account) {
+        return this.sqlSession.getMapper(AccountMapper.class).insert(account);
     }
 }

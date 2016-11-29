@@ -26,11 +26,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bingo.mapper.AccountMapper">
 
-    <select id="getMediaRecordByDocId" resultType="Account">
-        SELECT m.*
-        FROM media m, post_history p FORCE index(news_id)
-        WHERE p.news_id = #{docId}
-        AND p.media_id = m.id
+    <sql id="tableName">approvers</sql>
+
+    <sql id="columns">
+        `account`,
+        `uid`,
+        `on_work_time` as onWorkTime,
+        `fields`,
+        `off_work_time` as offWorkTime,
+        `approver_name` as approverName,
+        `updated_time` as updatedTime,
+        `video`,
+        `created_time` as createdTime,
+        `article`,
+        `quality`,
+        `invite`,
+        `bprofile`,
+        `grading`,
+        `reward`
+    </sql>
+
+    <select id="getByPK" resultType = "Account">
+        SELECT <include refid="columns"/> FROM <include refid="tableName"/> where `uid` = #{id};
     </select>
+
+    <insert id="insert" parameterType="Account" useGeneratedKeys="true" keyProperty="uid">
+        REPLACE INTO <include refid="tableName"/>
+        (`account`, `uid`, `on_work_time`, `fields`, `off_work_time`, `approver_name`, `updated_time`, `video`, `created_time`, `article`, `quality`, `invite`,`bprofile`,`grading`,`reward`)
+        VALUES(#{account}, #{uid}, #{onWorkTime}, #{fields}, #{offWorkTime}, #{approverName}, #{updatedTime}, #{video}, #{createdTime}, #{article}, #{quality}, #{invite}, #{bProfile}, #{grading},#{reward});
+    </insert>
 
 </mapper>

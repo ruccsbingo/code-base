@@ -50,6 +50,4 @@ public class MybatisConfiguration extends MybatisAutoConfiguration {
         proxy.setTargetDataSources(targetDataSources);
         return proxy;
     }
-
-
 }
