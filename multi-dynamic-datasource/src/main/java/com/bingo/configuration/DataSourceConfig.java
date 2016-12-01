@@ -32,7 +32,7 @@ public class DataSourceConfig {
     @Primary
     @ConfigurationProperties(prefix = writePropPrefix1)
     public DataSource writeDataSourceOne() {
-        log.info("-------------------- writeDataSource init ---------------------");
+        log.debug("-------------------- " + writePropPrefix1 + " init ---------------------");
         return DataSourceBuilder.create().type(dataSourceType).build();
     }
 
@@ -40,21 +40,21 @@ public class DataSourceConfig {
     @Bean(name = readBeanName1to1)
     @ConfigurationProperties(prefix = readPropPrefix1to1)
     public DataSource readDataSourceOne2One() {
-        log.info("-------------------- readDataSourceOne init ---------------------");
+        log.debug("-------------------- " + readPropPrefix1to1 + " init ---------------------");
         return DataSourceBuilder.create().type(dataSourceType).build();
     }
 
     @Bean(name = readBeanName1to2)
     @ConfigurationProperties(prefix = readPropPrefix1to2)
     public DataSource readDataSourceOne2Two() {
-        log.info("-------------------- readDataSourceTwo init ---------------------");
+        log.debug("-------------------- " + readPropPrefix1to2 + " init ---------------------");
         return DataSourceBuilder.create().type(dataSourceType).build();
     }
 
     @Bean(name = writeBeanName2)
     @ConfigurationProperties(prefix = writePropPrefix2)
     public DataSource writeDataSourceTwo() {
-        log.info("-------------------- writeDataSource init ---------------------");
+        log.debug("-------------------- " + writePropPrefix2 + " init ---------------------");
         return DataSourceBuilder.create().type(dataSourceType).build();
     }
 
@@ -62,14 +62,14 @@ public class DataSourceConfig {
     @Bean(name = readBeanName2to1)
     @ConfigurationProperties(prefix = readPropPrefix2to1)
     public DataSource readDataSourceTwo2One() {
-        log.info("-------------------- readDataSourceOne init ---------------------");
+        log.debug("-------------------- " + readPropPrefix2to1 + " init ---------------------");
         return DataSourceBuilder.create().type(dataSourceType).build();
     }
 
     @Bean(name = readBeanName2to2)
     @ConfigurationProperties(prefix = readPropPrefix2to2)
     public DataSource readDataSourceTwo2Two() {
-        log.info("-------------------- readDataSourceTwo init ---------------------");
+        log.debug("-------------------- " + readPropPrefix2to2 + " init ---------------------");
         return DataSourceBuilder.create().type(dataSourceType).build();
     }
 

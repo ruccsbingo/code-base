@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * Created by zhangbing on 16/11/26.
+ * 依据函数名决定使用读库还是写库;
+ * 依据第一个参数决定sharding库.
  */
 @Aspect
 @Component
@@ -22,20 +24,32 @@ public class DataSourceAop {
     @Autowired
     DataSourceConfig dataSourceConfig;
 
-    @Before("execution(* com.bingo.dao.AccountDao.find*(..)) or execution(* com.bingo.dao.AccountDao.get*(..))")
+    /**
+     * 设定为读库,并依据第一个参数选择sharding库
+     * @param point
+     */
+    @Before("execution(* com.bingo.dao.*.find*(..))" +
+            " or execution(* com.bingo.dao.*.get*(..))" +
+            " or execution(* com.bingo.dao.*.select*(..))")
     public void setReadDataSourceType(JoinPoint point) {
         Object[] args = point.getArgs();
         int shardingIndex = detemineDatasourceSharding(args);
         DataSourceContextHolder.read(shardingIndex);
-        log.info("dataSource切换到：Read" + DataSourceConfig.SHARDING_DELIMITER + shardingIndex);
+        log.debug("dataSource切换到：Read" + DataSourceConfig.SHARDING_DELIMITER + shardingIndex);
     }
 
-    @Before("execution(* com.bingo.dao.AccountDao.insert*(..)) or execution(* com.bingo.dao.AccountDao.update*(..))")
+    /**
+     * 设定为写库,并依据第一个参数选择sharding库
+     * @param point
+     */
+    @Before("execution(* com.bingo.dao.*.insert*(..))" +
+            " or execution(* com.bingo.dao.*.update*(..))" +
+            " or execution(* com.bingo.dao.*.delete*(..))")
     public void setWriteDataSourceType(JoinPoint point) {
         Object[] args = point.getArgs();
         int shardingIndex = detemineDatasourceSharding(args);
         DataSourceContextHolder.write(shardingIndex);
-        log.info("dataSource切换到：write" + DataSourceConfig.SHARDING_DELIMITER + shardingIndex);
+        log.debug("dataSource切换到：write" + DataSourceConfig.SHARDING_DELIMITER + shardingIndex);
     }
 
     private Long fetchUid(Object[] args) {
@@ -46,8 +60,10 @@ public class DataSourceAop {
         }
     }
 
-    //根据用户的uid % sharding 获取数据存储的分区
-    private int detemineDatasourceSharding(Object[] args) {
+    /**
+     * 根据用户的uid % sharding 获取数据存储的分区
+     */
+    protected int detemineDatasourceSharding(Object[] args) {
         Long uid = fetchUid(args);
         return (int) ((uid % dataSourceConfig.shardingSize) + 1);
     }

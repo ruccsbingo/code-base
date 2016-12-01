@@ -125,3 +125,8 @@ datasource:
 mybatis:
   mapperLocations: classpath:mapper/*.xml
   typeAliasesPackage: com.bingo.model
+
+logging:
+  level:
+    root: debug
+  file: log/info.log

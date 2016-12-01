@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by zhangbing on 16/11/26.
+ * 动态选择数据源
  */
 public class MyAbstractRoutingDataSource extends AbstractRoutingDataSource {
     private final int dataSourceNumber;
@@ -16,6 +17,11 @@ public class MyAbstractRoutingDataSource extends AbstractRoutingDataSource {
         this.dataSourceNumber = dataSourceNumber;
     }
 
+    /**
+     * 从数据源Context中,获取当前设置的数据源类型,和分区标志,
+     * 如果是读类型操作,进行简单的负载均衡
+     * @return
+     */
     @Override
     protected Object determineCurrentLookupKey() {
         String typeKey = DataSourceContextHolder.getJdbcType();
