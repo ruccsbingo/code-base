@@ -1,11 +1,12 @@
 #多数据源 1主2从
 datasource:
+  shardingSize: 2
  #从库数量
   readSize: 2
    # 使用druid数据源
   type: com.alibaba.druid.pool.DruidDataSource
 #主库
-  write:
+  write-1:
     url: jdbc:mysql://10.101.1.140:3306/wemedia_for_manual?characterSet=utf8mb4
     username: worker
     password: services
@@ -24,7 +25,45 @@ datasource:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
-  read1:
+  read-1-1:
+    url: jdbc:mysql://10.101.1.140:3306/wemedia_for_manual?characterSet=utf8mb4
+    username: worker
+    password: services
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQueryTimeout: 900000
+    validationQuery: SELECT SYSDATE() from dual
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  read-1-2:
+    url: jdbc:mysql://10.101.1.140:3306/wemedia_for_manual?characterSet=utf8mb4
+    username: worker
+    password: services
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQueryTimeout: 900000
+    validationQuery: SELECT SYSDATE() from dual
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  write-2:
     url: jdbc:mysql://10.101.1.140:3306/wemedia_for_manual_dev?characterSet=utf8mb4
     username: worker
     password: services
@@ -43,8 +82,8 @@ datasource:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
-  read2:
-    url: jdbc:mysql://10.101.1.140:3306/wemedia_for_manual_dev2?characterSet=utf8mb4
+  read-2-1:
+    url: jdbc:mysql://10.101.1.140:3306/wemedia_for_manual_dev?characterSet=utf8mb4
     username: worker
     password: services
     driver-class-name: com.mysql.jdbc.Driver
@@ -62,6 +101,26 @@ datasource:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
+  read-2-2:
+    url: jdbc:mysql://10.101.1.140:3306/wemedia_for_manual_dev?characterSet=utf8mb4
+    username: worker
+    password: services
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQueryTimeout: 900000
+    validationQuery: SELECT SYSDATE() from dual
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+
 
 mybatis:
   mapperLocations: classpath:mapper/*.xml

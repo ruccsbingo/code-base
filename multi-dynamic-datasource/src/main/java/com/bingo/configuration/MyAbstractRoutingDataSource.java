@@ -19,11 +19,21 @@ public class MyAbstractRoutingDataSource extends AbstractRoutingDataSource {
     @Override
     protected Object determineCurrentLookupKey() {
         String typeKey = DataSourceContextHolder.getJdbcType();
-        if (typeKey.equals(DataSourceType.write.getType()))
-            return DataSourceType.write.getType();
-        // 读 简单负载均衡
-        int number = count.getAndAdd(1);
-        int lookupKey = number % dataSourceNumber;
-        return new Integer(lookupKey);
+        int shardingIndex = Integer.parseInt(
+                typeKey.substring(
+                        typeKey.indexOf(DataSourceConfig.SHARDING_DELIMITER) + 1,
+                        typeKey.length()));
+
+        if (typeKey.contains(DataSourceType.write.getType())) {
+            return DataSourceType.write.getType() + DataSourceConfig.SHARDING_DELIMITER + shardingIndex;
+        } else {
+            // 读 简单负载均衡
+            int number = count.getAndAdd(1);
+            if (number > 1000000000) {
+                count.set(0);
+            }
+            int lookupKey = number % dataSourceNumber + 1;
+            return DataSourceType.read.getType() + DataSourceConfig.SHARDING_DELIMITER + shardingIndex + DataSourceConfig.READ_DELIMITER + lookupKey;
+        }
     }
 }

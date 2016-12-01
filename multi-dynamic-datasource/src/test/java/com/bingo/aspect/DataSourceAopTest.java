@@ -1,6 +1,5 @@
 package com.bingo.aspect;
 
-import com.alibaba.druid.support.json.JSONUtils;
 import com.bingo.dao.AccountDao;
 import com.bingo.model.Account;
 import org.junit.Test;
@@ -22,10 +21,10 @@ public class DataSourceAopTest {
 
     @Test
     public void setReadDataSourceType() throws Exception {
-        Account account = accountDao.getByPK(12299265l);
+        Account account = accountDao.getByPK(30923421l);
         System.out.println(account.getApproverName());
 
-        account.setApproverName("bingo");
+        account.setApproverName("bingobingo");
         account.setAccount(1);
         account.setArticle(1);
         account.setbProfile(1);
@@ -38,12 +37,26 @@ public class DataSourceAopTest {
         account.setUpdatedTime(34567l);
         account.setCreatedTime(456789l);
         account.setQuality(3);
-        accountDao.insert(account);
+        accountDao.insert(1l, account);
+
+        account.setApproverName("bingobingobingo");
+        account.setAccount(1);
+        account.setArticle(1);
+        account.setbProfile(1);
+        account.setGrading(1);
+        account.setInvite(1);
+        account.setVideo(1);
+        account.setUid(12345l);
+        account.setOffWorkTime("123");
+        account.setOnWorkTime("234");
+        account.setUpdatedTime(34567l);
+        account.setCreatedTime(456789l);
+        account.setQuality(3);
+        accountDao.insert(2l, account);
     }
 
     @Test
     public void setWriteDataSourceType() throws Exception {
 
     }
-
 }

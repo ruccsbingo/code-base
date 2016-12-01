@@ -18,7 +18,7 @@ public class AccountDao {
         return this.sqlSession.getMapper(AccountMapper.class).getByPK(id);
     }
 
-    public Long insert(Account account) {
+    public Long insert(Long id, Account account) {
         return this.sqlSession.getMapper(AccountMapper.class).insert(account);
     }
 }

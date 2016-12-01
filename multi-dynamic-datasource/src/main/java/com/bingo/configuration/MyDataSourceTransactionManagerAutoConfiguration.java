@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 public class MyDataSourceTransactionManagerAutoConfiguration extends DataSourceTransactionManagerAutoConfiguration {
 
-    private static final Logger log = LoggerFactory.getLogger(DataSourceConfiguration.class);
+    private static final Logger log = LoggerFactory.getLogger(DataSourceConfig.class);
 
     /**
      *
