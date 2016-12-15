@@ -30,6 +30,8 @@
         <module>multi-datasource</module>
         <module>multi-dynamic-datasource</module>
         <module>spring-redis-util</module>
+        <module>spring-consuming-rest</module>
+        <module>spring-mongo-util</module>
     </modules>
 
     <properties>
