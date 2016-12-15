@@ -29,6 +29,7 @@
         <module>http-proxy</module>
         <module>multi-datasource</module>
         <module>multi-dynamic-datasource</module>
+        <module>spring-redis-util</module>
     </modules>
 
     <properties>
