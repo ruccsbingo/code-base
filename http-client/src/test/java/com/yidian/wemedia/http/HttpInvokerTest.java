@@ -15,12 +15,6 @@ public class HttpInvokerTest {
     }
 
     @Test
-    public void testHttpPost() throws Exception {
-        MyInvoker httpInvoker = new MyInvoker("");
-        httpInvoker.httpGet("http://10.111.0.65:6001/id/gen?url=http://www.yidianzixun.com/mp/content?id=5813759&token=d01bbc072c2e7376801d9aa0eb89f95a&type=news");
-    }
-
-    @Test
     public void testHttpPost1() throws Exception {
 
     }

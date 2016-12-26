@@ -1,5 +1,6 @@
 package com.yidian.media;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class ApplicationTests {
 	@Autowired
 	private RedisTemplate redisTemplate;
 
+	@Ignore
 	@Test
 	public void test() throws Exception {
 

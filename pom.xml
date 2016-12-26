@@ -19,19 +19,20 @@
         <module>kafka-util</module>
         <module>mail-util</module>
         <module>log-util</module>
-        <module>protobuf-util</module>
-        <module>wxpay</module>
+        <!--<module>protobuf-util</module>-->
         <module>jiguang</module>
         <module>excel-util</module>
         <module>websocket</module>
         <module>netty-demo</module>
-        <module>alipay</module>
         <module>http-proxy</module>
-        <module>multi-datasource</module>
         <module>multi-dynamic-datasource</module>
         <module>spring-redis-util</module>
         <module>spring-consuming-rest</module>
         <module>spring-mongo-util</module>
+        <module>spring-cloud-eureka</module>
+        <module>spring-rest-service</module>
+        <module>spring-cloud-ribbon</module>
+        <module>spring-cloud-zuul</module>
     </modules>
 
     <properties>
